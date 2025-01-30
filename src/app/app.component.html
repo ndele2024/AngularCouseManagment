@@ -5,16 +5,20 @@
 
   <div class="d-flex ">
     <div class="col-md-3">
-      <app-menu [(listeCours)]="listeCours" [(affichage)]="affichage"></app-menu>
+      <app-menu [(listeCours)]="listeCours"
+                [(affichage)]="affichage"
+                [(coursCourant)]="coursCourant"></app-menu>
     </div>
 
     <div class="col-md-9">
       @if (affichage == 1){
         <app-course-form [(listeCours)]="listeCours" [(affichage)]="affichage"></app-course-form>
       } @else if (affichage == 2){
-        <app-bordereau></app-bordereau>
+        <app-bordereau [(coursCourant)]="coursCourant"></app-bordereau>
       } @else {
-        <img src="" width="100%">
+        <div class="text-xxl-center">
+          Gestionnaire de cours
+        </div>
       }
 
     </div>

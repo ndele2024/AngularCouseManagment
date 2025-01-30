@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, model} from '@angular/core';
+import {Cours} from '../model/cours';
 
 @Component({
   selector: 'app-bordereau',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './bordereau.component.css'
 })
 export class BordereauComponent {
+  coursCourant = model.required<Cours>();
 
 }

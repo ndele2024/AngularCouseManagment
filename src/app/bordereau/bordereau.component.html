@@ -1,1 +1,7 @@
-<p>bordereau works!</p>
+<p>Bordereau du cours : {{coursCourant().sigle}} {{coursCourant().titre}}</p>
+@for (etudiant of coursCourant().listeEtudiant; track $index){
+  <div>
+    {{$index}} {{coursCourant().listeEtudiant?.at($index).nom}}
+  </div>
+
+}
