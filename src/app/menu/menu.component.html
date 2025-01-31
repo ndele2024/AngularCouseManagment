@@ -1,0 +1,21 @@
+<div class="flex-row justify-content-center align-content-center">
+  <div class="m-3">
+    Liste de cours
+  </div>
+  @if (listeCours().length > 0) {
+    @for (cours of listeCours(); track cours.sigle) {
+      <div class="d-flex justify-content-center align-items-center m-1 p-2 menu"
+           (click)="showCours(cours)">
+        {{cours.titre}}
+      </div>
+    }
+  } @else {
+    <div class="bg-danger mb-2 p-2 text-bg-secondary">
+      Aucun cours créer
+    </div>
+  }
+  <div class="mt-3">
+    <button mat-flat-button (click)="affichageNouveauCour()">Nouveau cours</button>
+  </div>
+
+</div>

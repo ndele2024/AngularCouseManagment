@@ -1,0 +1,64 @@
+<div class="m-auto">
+  <form [formGroup]="formulaire" (ngSubmit)="soummettre()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Création d'un Cours
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div>
+          <mat-form-field class="w-100">
+            <mat-label>Sigle</mat-label>
+            <input matInput type="text" formControlName="sigle" required>
+            @if (formulaire.controls.sigle.hasError('required')) {
+              <mat-error>le sigle est requis</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="w-100">
+            <mat-label>Titre</mat-label>
+            <input matInput type="text" formControlName="titre" required>
+            @if (formulaire.controls.titre.hasError('required')) {
+              <mat-error>le Titre est requis</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div formArrayName="etudiant">
+          <span class="m-3"> Etudiants du cours </span>
+          <button mat-flat-button type="button" (click)="ajouterEtudiant()">Ajouter</button>
+
+        <mat-divider></mat-divider>
+        @for (et of formulaire.controls.etudiant.controls; track $index) {
+          <div class="flex-row justify-content-center align-items-center m-1 p-1" [formGroupName]="$index">
+            <span class="me-2">{{ $index+1 }}</span>
+            <mat-form-field class="me-2">
+              <mat-label>Nom</mat-label>
+              <input matInput type="text" formControlName="nom" required>
+              @if (et.controls.nom.hasError('required')) {
+                <mat-error>le Titre est requis</mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field class="me-2">
+              <mat-label>Prenom</mat-label>
+              <input matInput type="text" formControlName="prenom">
+            </mat-form-field>
+            <span>
+              <button mat-button type="button" aria-label="Example icon button with a delete icon" (click)="supprimeLigneEtudiant($index)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </span>
+
+          </div>
+        }
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button type="submit" [disabled]="!formulaire.valid">Soumettre</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
