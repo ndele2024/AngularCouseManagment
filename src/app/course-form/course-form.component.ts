@@ -37,10 +37,19 @@ import { MatTableModule } from '@angular/material/table';
 })
 export class CourseFormComponent {
   private formBuilder = inject(FormBuilder);
+  coursCourant = model<Cours>();
+  listeCours = model.required<Cours[]>();
+
   formulaire = this.formBuilder.group({
-    sigle:['', Validators.required],
-    titre:['', Validators.required],
-    etudiant : this.formBuilder.array([
+    sigle:[this.coursCourant()?.sigle??'', Validators.required],
+    titre:[this.coursCourant()?.titre??'', Validators.required],
+    etudiant : this.formBuilder.array(
+      this.coursCourant()?.listeEtudiant.map(et =>
+        this.formBuilder.group({
+          nom: [et.nom??'', Validators.required],
+          prenom: [et.prenom??'']
+        }))??
+      [
       this.formBuilder.group({
         nom: ['', Validators.required],
         prenom: ['']
@@ -48,8 +57,6 @@ export class CourseFormComponent {
     ])
   });
 
-  listeCours = model.required<Cours[]>();
-  affichage = model.required<number>();
 
   soummettre() {
     const titre = this.formulaire.controls.titre.value;
@@ -69,7 +76,8 @@ export class CourseFormComponent {
     //this.listeCours.set(this.ajouterCours(cours));
     this.listeCours().push(cours);
     alert("Cours ajouté avec succès");
-     this.affichage.set(0);
+    this.formulaire.reset();
+     //this.affichage.set(0);
   }
 
   ajouterEtudiant() {
@@ -80,15 +88,6 @@ export class CourseFormComponent {
       })
     );
   }
-
-  /*ajouterCours(nouveauCours : Cours) : Cours[] {
-    let cours : Cours[] = [];
-    for (const cour of this.listeCours()) {
-      cours.push(cour);
-    }
-    cours.push(nouveauCours);
-    return cours;
-  }*/
 
   supprimeLigneEtudiant(index:number){
     this.formulaire.controls.etudiant.controls.splice(index, 1);

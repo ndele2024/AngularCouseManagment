@@ -11,7 +11,7 @@
         <div>
           <mat-form-field class="w-100">
             <mat-label>Sigle</mat-label>
-            <input matInput type="text" formControlName="sigle" required>
+            <input matInput type="text" formControlName="sigle" [value]="coursCourant()?.sigle??''" required>
             @if (formulaire.controls.sigle.hasError('required')) {
               <mat-error>le sigle est requis</mat-error>
             }
@@ -20,7 +20,7 @@
         <div>
           <mat-form-field class="w-100">
             <mat-label>Titre</mat-label>
-            <input matInput type="text" formControlName="titre" required>
+            <input matInput type="text" formControlName="titre" [value]="coursCourant()?.titre??''" required>
             @if (formulaire.controls.titre.hasError('required')) {
               <mat-error>le Titre est requis</mat-error>
             }

@@ -12,9 +12,9 @@
 
     <div class="col-md-9">
       @if (affichage == 1){
-        <app-course-form [(listeCours)]="listeCours" [(affichage)]="affichage"></app-course-form>
+        <app-course-form [(listeCours)]="listeCours" [coursCourant]="coursCourant"></app-course-form>
       } @else if (affichage == 2){
-        <app-bordereau [(coursCourant)]="coursCourant"></app-bordereau>
+        <app-bordereau [(coursCourant)]="coursCourant" [(affichage)]="affichage"></app-bordereau>
       } @else {
         <div class="text-xxl-center">
           Gestionnaire de cours

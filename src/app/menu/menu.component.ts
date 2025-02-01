@@ -14,7 +14,7 @@ import {MatButton} from '@angular/material/button';
 export class MenuComponent {
   listeCours = model.required<Cours[]>();
   affichage = model.required<number>();
-  coursCourant = model.required<Cours>();
+  coursCourant = model<Cours>();
 
   showCours(cours: Cours) {
     //modification du cours courant a afficher dans le bordereau

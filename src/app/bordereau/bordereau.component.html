@@ -1,7 +1,10 @@
-<p>Bordereau du cours : {{coursCourant().sigle}} {{coursCourant().titre}}</p>
-@for (etudiant of coursCourant().listeEtudiant; track $index){
+<p>Bordereau du cours : {{coursCourant()?.sigle}} {{coursCourant()?.titre}}</p>
+@for (etudiant of coursCourant()?.listeEtudiant; track $index){
   <div>
     {{$index}} {{etudiant.nom}} {{etudiant.prenom}}
   </div>
-
 }
+
+<div>
+  <button type="button" mat-button (click)="editerCours()">Editer le cours</button>
+</div>

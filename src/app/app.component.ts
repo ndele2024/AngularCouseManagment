@@ -20,5 +20,5 @@ export class AppComponent {
   title = 'exercice3-angular';
   listeCours : Cours[] = [];
   affichage : number = 0;
-  coursCourant : Cours = new Cours("def", "def");
+  coursCourant : Cours|undefined;
 }
